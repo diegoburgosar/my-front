@@ -11,7 +11,6 @@ class App extends React.Component{
     }
   }
 
-
 componentDidMount (){
   fetch('https://jsonplaceholder.typicode.com/users')
   .then(res => res.json())
@@ -26,18 +25,54 @@ componentDidMount (){
   }); 
 }
 
+async postData(){
+  alert('testing');
+
+    try {
+      let  result = await fetch('https://webhook.site/82ad0feb-9c6d-4548-951d-2e72b994c193',{
+        method:'post',
+        mode: 'no-cors',
+        headers:{
+          'Accept': 'application/json',
+          'Content-type' : 'application/json',
+        },
+
+        body: JSON.stringify({
+            key1: 'Die',
+            email:'diego.burgos@naranjax.com',
+            name:'Diego S',
+            lastName:'Burgos',
+
+        })
+
+      });
+
+      console.log('Result: '+result);
+
+    } catch (e) {
+      console.console.log(e);
+      
+    }
+
+
+}
 
 render (){
 
   var {isLoaded, items} = this.state;
+  //console.log(this.state.items);
 
   if(!isLoaded){
 
     return <div>Loading..........</div>
+
   }else{
+
     return(
      <div className ="App">
       Data has been Loader
+      <p></p>
+        <button onClick={() => this.postData() } >Data post</button>
         <ul>
           {items.map(item => (
             <li key={item.id}>
@@ -50,62 +85,9 @@ render (){
   }
 
   }
-
-  
 } 
 
 export default App;
-
-
-/*
-componentDidMount (){
-  fetch('https://jsonplaceholder.typicode.com/users')
-  .then (response => response.json())
-  .then (baseJson => this.setState({base: baseJson.result, isFetch:false}))
-}
-*/
-
-/*
-componentDidMount(){
-    fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json')
-    .then(response => {
-    return response.json();
-    })
-    .then(response => {
-      this.setState.base = response;
-      const baseJson = this.setState.base;
-      console.log(baseJson.squadName);
-      console.log(baseJson.members);
-      console.log(baseJson.members[0].name);
-      console.log(baseJson.members[1].name);
-      console.log(baseJson.members[2].name);
-    })
-  }
-*/
-
-
-/*
-componentDidMount () {
-
-    fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json')
-    .then(response => response.json())
-    .then(baseJson => this.setState({base:baseJson.result}) )
-    const baseJsonTemp = this.state.base[0]
-    console.log("-->"+baseJsonTemp)
-  }
-
-  render (){
-    //const name = this.state.base[0]
-    
-  return(
-    <div>fetch</div>
-
-    );
-  }
-} 
-
-*/
-
 
 
  
