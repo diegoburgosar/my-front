@@ -19,15 +19,11 @@ componentDidMount (){
       this.setState ({
           isLoaded:true,
           items: json,
-
       })
-
   }); 
 }
 
 async postData(){
-  alert('testing');
-
     try {
       let  result = await fetch('https://webhook.site/82ad0feb-9c6d-4548-951d-2e72b994c193',{
         method:'post',
@@ -42,16 +38,11 @@ async postData(){
             email:'diego.burgos@naranjax.com',
             name:'Diego S',
             lastName:'Burgos',
-
         })
-
       });
-
       console.log('Result: '+result);
-
     } catch (e) {
-      console.console.log(e);
-      
+      console.console.log(e);  
     }
 
 
@@ -69,10 +60,18 @@ render (){
   }else{
 
     return(
-     <div className ="App">
-      Data has been Loader
-      <p></p>
-        <button onClick={() => this.postData() } >Data post</button>
+
+    <div className="App">
+
+      <header className="header">
+        User Header
+      </header>
+      <content>
+        User Search
+        <form id="search-form">
+          <input type="text" placeholder="Enter User DNI"/>
+          <button onClick={() => this.postData() } >Data post</button>
+        </form>
         <ul>
           {items.map(item => (
             <li key={item.id}>
@@ -80,6 +79,7 @@ render (){
             </li>
           ))};
         </ul>
+      </content>
     </div>
     );
   }
@@ -88,6 +88,8 @@ render (){
 } 
 
 export default App;
+//https://www.youtube.com/watch?v=hzLDsxPGctY get
+//https://www.youtube.com/watch?v=8SkiIAbFbNs post
 
 
  
